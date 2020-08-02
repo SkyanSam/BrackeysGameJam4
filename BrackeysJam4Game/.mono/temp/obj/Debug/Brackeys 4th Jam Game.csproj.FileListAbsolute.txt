@@ -1,0 +1,6 @@
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\bin\Debug\Brackeys 4th Jam Game.dll
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\bin\Debug\Brackeys 4th Jam Game.pdb
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\obj\Debug\Brackeys 4th Jam Game.csprojAssemblyReference.cache
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\obj\Debug\Brackeys 4th Jam Game.csproj.CoreCompileInputs.cache
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\obj\Debug\Brackeys 4th Jam Game.dll
+D:\Documents\GodotProjects\BrackeysGameJam4\BrackeysJam4Game\.mono\temp\obj\Debug\Brackeys 4th Jam Game.pdb
