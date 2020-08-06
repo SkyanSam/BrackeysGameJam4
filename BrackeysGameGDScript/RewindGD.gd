@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+export var isRotationLocked = true;
 var pos = []
 var lineal_v = []
 var last_v
@@ -13,7 +14,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept"):
 		sleeping = false
 	
-	if Input.is_action_just_pressed("ui_down"):
+	if Input.is_action_just_pressed("rewind"):
 		if rewinding:
 			_start_recording()
 		else:
@@ -42,6 +43,8 @@ func _integrate_forces(state):
 	if (integrating):
 		state.transform.origin = positionToIntegrate
 		integrating = false
+	
+	
 
 func _start_rewinding():
 	mode = RigidBody2D.MODE_KINEMATIC
