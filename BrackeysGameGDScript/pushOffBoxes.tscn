@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://GroupManager.gd" type="Script" id=1]
+[ext_resource path="res://RewindGD.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Art/Background/Background.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 190.987, 61.017 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 956.167, 535.891 )
+texture = ExtResource( 3 )
+
+[node name="Objects" type="Node2D" parent="."]
+script = ExtResource( 1 )
+groupName = "bodies"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Objects"]
+position = Vector2( 350.705, 616.136 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Objects/RigidBody2D"]
+scale = Vector2( 6, 1.92 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/RigidBody2D"]
+shape = SubResource( 1 )

@@ -1,22 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PlayerPhysics.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://playerSpriteFrames.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://LadderTouchingDialog.gd" type="Script" id=4]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 30.7362
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.0569, 68.3611 )
 
-[node name="Node2D" type="Node2D"]
+[node name="PlayerScene" type="Node2D"]
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 500, 535.998 )
-scale = Vector2( 0.998012, 0.996014 )
 script = ExtResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource( 1 )
 
-[node name="PlayerScript" type="Node2D" parent="Player"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
+scale = Vector2( 0.5, 0.5 )
+frames = ExtResource( 3 )
+animation = "idle"
+
+[node name="LadderTouchingDialog" type="RichTextLabel" parent="Player"]
+margin_left = -89.1026
+margin_top = -18.8322
+margin_right = 111.897
+margin_bottom = 64.1678
+custom_fonts/normal_font = ExtResource( 2 )
+tab_size = 1
+text = "Press Shift
+To Climb"
+scroll_active = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

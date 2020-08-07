@@ -23,7 +23,7 @@ func _physics_process(delta):
 
 func _on_Ladder_body_entered(body):
 	if (body.name == "Player"):
-		get_node("../Player").ladder_touching = true;
+		get_node("../PlayerScene/Player").ladder_touching = true;
 		if (firstTimeTouchingLadder):
 			firstTimeTouchingLadder = false;
 			velocity.x = 400;
@@ -31,4 +31,4 @@ func _on_Ladder_body_entered(body):
 
 func _on_Ladder_body_exited(body):
 	if (body.name == "Player"):
-		get_node("../Player").ladder_touching = false;
+		get_node("../PlayerScene/Player").ladder_touching = false;
