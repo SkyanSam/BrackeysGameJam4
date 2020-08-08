@@ -1,13 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://new_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://GroupManager.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/tiles/coin.png" type="Texture" id=3]
 [ext_resource path="res://Ladder.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Art/tiles/ladder.png" type="Texture" id=5]
 [ext_resource path="res://Door.gd" type="Script" id=6]
 [ext_resource path="res://Rewind.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Art/Background/Background.png" type="Texture" id=8]
 [ext_resource path="res://player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Art/tiles/door.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -24,10 +26,12 @@ position = Vector2( 956.167, 534.393 )
 texture = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 0.24, 0.24 )
 tile_set = ExtResource( 1 )
+cell_size = Vector2( 400, 400 )
+cell_custom_transform = Transform2D( 400, 0, 0, 400, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 786450, 0, 0 )
+tile_data = PoolIntArray( 720896, 8, 0, 720897, 8, 0, 720898, 8, 0, 720899, 8, 0, 720900, 8, 0, 720901, 8, 0, 720902, 8, 0, 720903, 8, 0, 720904, 8, 0, 720905, 8, 0, 720906, 8, 0, 720907, 8, 0, 720908, 8, 0, 720909, 8, 0, 720910, 8, 0, 720911, 8, 0, 720912, 8, 0, 720913, 8, 0, 720914, 8, 0, 720915, 8, 0, 786450, 0, 0 )
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource( 2 )
@@ -38,6 +42,8 @@ position = Vector2( 723.13, 673.131 )
 scale = Vector2( 0.68, 0.719999 )
 
 [node name="Sprite" type="Sprite" parent="Coins/Coin"]
+position = Vector2( -4.41138, 4.73853 )
+scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin"]
@@ -49,6 +55,8 @@ position = Vector2( 1417.07, 676.042 )
 scale = Vector2( 0.68, 0.719999 )
 
 [node name="Sprite" type="Sprite" parent="Coins/Coin2"]
+position = Vector2( 2.94116, -1.63428 )
+scale = Vector2( 0.333, 0.333 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin2"]
@@ -69,9 +77,16 @@ scale = Vector2( 7.36123, 3.17007 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Ladder"]
-position = Vector2( 0, 3.05176e-05 )
-scale = Vector2( 1, 5.21399 )
-texture = ExtResource( 3 )
+position = Vector2( -1160.47, -330.663 )
+scale = Vector2( 0.190914, 0.190914 )
+texture = ExtResource( 5 )
+offset = Vector2( 6078.47, 2038.08 )
+
+[node name="Sprite2" type="Sprite" parent="Ladder"]
+position = Vector2( -1160.46, -446.48 )
+scale = Vector2( 0.190914, 0.190914 )
+texture = ExtResource( 5 )
+offset = Vector2( 6078.47, 2038.08 )
 
 [node name="Rewind" type="Node2D" parent="Ladder"]
 script = ExtResource( 7 )
@@ -82,13 +97,13 @@ script = ExtResource( 6 )
 coinsNeeded = 2
 sceneToGoTo = "res://ladderscene.tscn"
 
-[node name="Sprite" type="Sprite" parent="Door"]
-position = Vector2( 0.560364, 31.8624 )
-scale = Vector2( 1.0051, 1.01315 )
-texture = ExtResource( 3 )
+[node name="NotSprite" type="Sprite" parent="Door"]
+position = Vector2( 3, -2.00006 )
+scale = Vector2( 0.155, 0.155 )
+texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2( -0.110474, -1.27124 )
+position = Vector2( 1.88953, -1.27124 )
 scale = Vector2( 1.0051, 1.01315 )
 shape = SubResource( 4 )
 

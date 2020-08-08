@@ -10,13 +10,13 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.7362
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.7323, 167.783 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30.1824, 64.9644 )
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=4]
 
 [node name="Main" type="Node2D"]
 
@@ -51,7 +51,7 @@ script = ExtResource( 5 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/RigidBody2D"]
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Door" type="StaticBody2D" parent="."]
 position = Vector2( 927.714, 545.95 )
@@ -64,7 +64,7 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( -0.667419, -32.7036 )
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 
 [node name="Coins" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -79,4 +79,4 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coins/Coin"]
 scale = Vector2( 3.29412, 3.33334 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
