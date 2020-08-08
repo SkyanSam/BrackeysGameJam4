@@ -14,12 +14,14 @@ var overrideAnimation = false
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("pull"):
+		overrideAnimation = true;
 		pushDirection = -1
 	if Input.is_action_just_released("move_right") and !Input.is_action_pressed("pull"):
 		pushDirection = 0.2
 	if Input.is_action_just_released("move_left") and !Input.is_action_pressed("pull"):
 		pushDirection = 0.2
 	if Input.is_action_just_released("pull"):
+		overrideAnimation = false
 		if velocity.x == 0:
 			pushDirection = 0.2
 	
@@ -71,26 +73,30 @@ func _physics_process(delta):
 					if ($AnimatedSprite.animation != "climb"):
 						$AnimatedSprite.animation = "climb";
 						$AnimatedSprite.frame = 0;
+						
+				elif Input.is_action_just_pressed("pull"):
+					$AnimatedSprite.animation = "pull"
+				
 				if (is_on_floor()):
 					if ($AnimatedSprite.animation == "inair"):
 						$AnimatedSprite.animation = "land"
 						$AnimatedSprite.frame = 0;
 				# Reached the end of the animation
 				
-				if $AnimatedSprite.frame == $AnimatedSprite.animation.count() - 1:
-					if $AnimatedState.animation == "jump":
-						$AnimatedState.animation = "inair";
+				if $AnimatedSprite.frame == $AnimatedSprite.frames.get_frame_count($AnimatedSprite.animation) - 1:
+					if $AnimatedSprite.animation == "jump":
+						$AnimatedSprite.animation = "inair";
 						$AnimatedSprite.frame = 0;
 						
-					elif $AnimatedState.animation == "land":
-						$AnimatedState.animation = "idle";
+					elif $AnimatedSprite.animation == "land":
+						$AnimatedSprite.animation = "idle";
 						$AnimatedSprite.frame = 0;
 						overrideAnimation = false
 			else:
 				if abs(velocity.x) > 0:
 					$AnimatedSprite.animation = "walk"
 				else:
-					$AnimatedSprite.animation = "walk"
+					$AnimatedSprite.animation = "idle"
 	
 	
 	

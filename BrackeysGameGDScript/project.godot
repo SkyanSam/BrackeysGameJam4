@@ -16,13 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="BrackeysGameGDScript"
-run/main_scene="res://pushboxesscene.tscn"
+run/main_scene="res://ladderscene.tscn"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
+window/size/fullscreen=true
 
 [input]
 
