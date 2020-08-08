@@ -10,6 +10,7 @@ export var velocity = Vector2()
 var ladder_on = false
 var ladder_touching = false
 var pushDirection = 0.2;
+var overrideAnimation = false
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("pull"):
@@ -24,11 +25,14 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("restart"):
 		get_tree().reload_current_scene()
+	
+	
 		
 	#print(ladder_on)
 	rewind_effect()
 	if not rewinding:
 		if ladder_on:
+			overrideAnimation = false
 			velocity.y = 0
 			if Input.is_action_pressed("move_up") && ladder_touching:
 				velocity.y = -moveSpeed
@@ -42,6 +46,7 @@ func _physics_process(delta):
 				
 			if Input.is_action_just_pressed("pull"):
 				ladder_on = false
+				overrideAnimation = false
 				
 		else:
 			if ladder_touching:
@@ -51,9 +56,41 @@ func _physics_process(delta):
 			velocity.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * moveSpeed
 			if Input.is_action_just_pressed("jump") and is_on_floor():
 				velocity.y = jumpSpeed;
+				if ($AnimatedSprite.animation != "jump"):
+					overrideAnimation = true;
+					$AnimatedSprite.animation = "jump";
+					$AnimatedSprite.frame = 0;
 			else:
 				velocity.y += gravity
 				velocity.y = clamp(velocity.y, jumpSpeed, maxGravity)
+			
+			
+			if (overrideAnimation):
+				
+				if (ladder_on):
+					if ($AnimatedSprite.animation != "climb"):
+						$AnimatedSprite.animation = "climb";
+						$AnimatedSprite.frame = 0;
+				if (is_on_floor()):
+					if ($AnimatedSprite.animation == "inair"):
+						$AnimatedSprite.animation = "land"
+						$AnimatedSprite.frame = 0;
+				# Reached the end of the animation
+				
+				if $AnimatedSprite.frame == $AnimatedSprite.animation.count() - 1:
+					if $AnimatedState.animation == "jump":
+						$AnimatedState.animation = "inair";
+						$AnimatedSprite.frame = 0;
+						
+					elif $AnimatedState.animation == "land":
+						$AnimatedState.animation = "idle";
+						$AnimatedSprite.frame = 0;
+						overrideAnimation = false
+			else:
+				if abs(velocity.x) > 0:
+					$AnimatedSprite.animation = "walk"
+				else:
+					$AnimatedSprite.animation = "walk"
 	
 	
 	
@@ -89,6 +126,10 @@ func _physics_process(delta):
 			
 			
 	move_and_slide(velocity, Vector2.UP, false, 4, 0.785398, false)
+	
+	if abs(velocity.x) > 0:
+		$AnimatedSprite.animation = "walking"
+	
 #
 var pos = []
 var lineal_v = []
